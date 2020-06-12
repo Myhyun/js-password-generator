@@ -5,6 +5,8 @@ var spChars = ["!", "@", "#", "$", "%", "^", "&", "*",]
 var numChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 var lowerChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var upperChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+var masterArray = []
+
 
 // Write password to the #password input
 function writePassword() {
@@ -31,13 +33,37 @@ function generatePassword(){
     var lowerTrue = confirm("Include Lowercase letters?");
     var upperTrue = confirm("Include Uppercase letters?");
 
-    if (spCharsTrue !==true && numsTrue !==true && lowerTrue !==true && upperTrue !==true){
+    if (!spCharsTrue && !numsTrue && !lowerTrue && !upperTrue){
       alert("Please allow at least 1 type of character requirement")
+    }
+  
+    if (numsTrue) {
+      masterArray.concat(numChars)
+    }
+
+    if (spCharsTrue) {
+      masterArray.concat(spChars)
+    }
+
+    if (lowerTrue) {
+      masterArray.concat(lowerChars)
+    }
+    
+    if (upperTrue) {
+      masterArray.concat(upperChars)
+    }
+
+    function randomPassword(pwLength) {
+      for (var x = 0; x < pwLength; x++) {
+        var i = Math.floor(Math.random() * masterArray.length);
+        password += masterArray.charAt(i)
+      }
+      return generatePassword;
     }
   
 
 
   }
 }
-//create a master array with the characters that the
-//4 if statesments 1 for each character criteria
+//create a master array with the characters that the user confirms
+//4 if statements 1 for each character criteria
