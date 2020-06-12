@@ -20,7 +20,7 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-function generatePassword(){
+function generatePassword() {
   var pwLength = prompt("Please input password length desired (8-128)");
 
   if (pwLength < 8 || pwLength > 128) {
@@ -33,37 +33,48 @@ function generatePassword(){
     var lowerTrue = confirm("Include Lowercase letters?");
     var upperTrue = confirm("Include Uppercase letters?");
 
-    if (!spCharsTrue && !numsTrue && !lowerTrue && !upperTrue){
+    if (!spCharsTrue && !numsTrue && !lowerTrue && !upperTrue) {
       alert("Please allow at least 1 type of character requirement")
     }
-  
+
     if (numsTrue) {
-      masterArray.concat(numChars)
-    }
+      masterArray.push(numChars)
+    }   
 
     if (spCharsTrue) {
-      masterArray.concat(spChars)
+      masterArray.push(spChars)
     }
 
     if (lowerTrue) {
-      masterArray.concat(lowerChars)
+      masterArray.push(lowerChars)
     }
-    
+
     if (upperTrue) {
-      masterArray.concat(upperChars)
+      masterArray.push(upperChars)
     }
 
-    function randomPassword(pwLength) {
+    var possCharArray = masterArray.flat(4);
+
+    possCharArray.join();
+
+    console.log(possCharArray);
+
+    function password(pwLength) {
       for (var x = 0; x < pwLength; x++) {
-        var i = Math.floor(Math.random() * masterArray.length);
-        password += masterArray.charAt(i)
+        var i = Math.floor(Math.random() * possCharArray.length);
+        password += possCharArray(i)
       }
-      return generatePassword;
+      
+      return possCharArray;
     }
-  
 
+    password()
+
+    //retun the masterA
 
   }
 }
+
+
 //create a master array with the characters that the user confirms
 //4 if statements 1 for each character criteria
