@@ -19,7 +19,7 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
+//function to generate the random password
 function generatePassword() {
   var pwLength = prompt("Please input password length desired (8-128)");
 
@@ -39,7 +39,7 @@ function generatePassword() {
 
     if (numsTrue) {
       masterArray.push(numChars)
-    }   
+    }
 
     if (spCharsTrue) {
       masterArray.push(spChars)
@@ -59,22 +59,22 @@ function generatePassword() {
 
     console.log(possCharArray);
 
-    function password(pwLength) {
+
+    function randomPassword(pwLength) {
+      var randomGenPassword = "";
       for (var x = 0; x < pwLength; x++) {
         var i = Math.floor(Math.random() * possCharArray.length);
-        password += possCharArray(i)
+        randomGenPassword += possCharArray[i]
       }
-      
-      return possCharArray;
+
+      return randomGenPassword
+    
     }
 
-    password()
+    return randomPassword(pwLength);
 
-    //retun the masterA
+    //return the generated password
 
   }
 }
 
-
-//create a master array with the characters that the user confirms
-//4 if statements 1 for each character criteria
